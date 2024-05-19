@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CRUD Application</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Management Data Anggota UKM</h1>
+      <ul class="nav nav-pills nav-fill mb-4">
+        <li class="nav-item">
+          <a class="nav-link" id="nav-create">Tambah Data</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-read-all">Lihat Data</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-read-id">Cek Data</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-update">Perbarui Data</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-delete">Hapus Data</a>
+        </li>
+      </ul>
+
+      <!-- Alert Messages -->
+      <div id="alertMessage" class="alert" role="alert"></div>
+
+      <!-- Create Form -->
+      <div id="create-form">
+        <h2>Tambah Data</h2>
+        <form id="createUserForm" class="needs-validation" novalidate>
+          <div class="form-group">
+            <label for="createName">Nama</label>
+            <input
+              type="text"
+              class="form-control"
+              id="createName"
+              placeholder="Masukan Nama"
+              required
+            />
+            <div class="invalid-feedback">Mohon Masukan Nama Anda.</div>
+          </div>
+          <div class="form-group">
+            <label for="createAvatar">Avatar URL</label>
+            <input
+              type="text"
+              class="form-control"
+              id="createAvatar"
+              placeholder="Masukan avatar URL"
+              required
+            />
+            <div class="invalid-feedback">Mohon masukan avatar URL anda.</div>
+          </div>
+          <button type="submit" class="btn btn-primary">Tambah Data</button>
+        </form>
+      </div>
+
+      <!-- Read All Users -->
+      <div id="read-all" style="display: none">
+        <h2>Lihat Data</h2>
+
+        <button id="readUsersBtn" class="btn btn-secondary mb-3">
+          lihat seluruh
+        </button>
+        <div id="usersContainer"></div>
+      </div>
+
+      <!-- Read User by ID -->
+      <div id="read-id" style="display: none">
+        <h2>Cek Data</h2>
+        <form id="readUserForm" class="needs-validation" novalidate>
+          <div class="form-group">
+            <label for="readId">ID</label>
+            <input
+              type="text"
+              class="form-control"
+              id="readId"
+              placeholder="Masukan ID"
+              required
+            />
+            <div class="invalid-feedback">Masukan Sandi Anda.</div>
+          </div>
+          <button type="submit" class="btn btn-secondary">Cek User</button>
+        </form>
+        <div id="userContainer"></div>
+      </div>
+
+      <!-- Update User -->
+      <div id="update-form" style="display: none">
+        <h2>Perbarui Data</h2>
+        <form id="updateUserForm" class="needs-validation" novalidate>
+          <div class="form-group">
+            <label for="updateId">ID</label>
+            <input
+              type="text"
+              class="form-control"
+              id="updateId"
+              placeholder="Enter user ID"
+              required
+            />
+            <div class="invalid-feedback">Mohon masukan ID anda.</div>
+          </div>
+          <div class="form-group">
+            <label for="updateName">Nama Baru</label>
+            <input
+              type="text"
+              class="form-control"
+              id="updateName"
+              placeholder="Masukan Nama Baru"
+              required
+            />
+            <div class="invalid-feedback">Mohon Masukan Nama baru anda.</div>
+          </div>
+          <div class="form-group">
+            <label for="updateAvatar">Avatar URL baru</label>
+            <input
+              type="text"
+              class="form-control"
+              id="updateAvatar"
+              placeholder="Masukan avatar URL baru"
+              required
+            />
+            <div class="invalid-feedback">Masukan URL avtar baru anda.</div>
+          </div>
+          <button type="submit" class="btn btn-warning">Perbarui</button>
+        </form>
+      </div>
+
+      <!-- Delete User -->
+      <div id="delete-form" style="display: none">
+        <h2>Hapus data Siswa</h2>
+        <form id="deleteUserForm" class="needs-validation" novalidate>
+          <div class="form-group">
+            <label for="deleteId">ID</label>
+            <input
+              type="text"
+              class="form-control"
+              id="deleteId"
+              placeholder="ID"
+              required
+            />
+            <div class="invalid-feedback">Mohon masukan ID</div>
+          </div>
+          <button type="submit" class="btn btn-danger">Hapus</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Bootstrap validation
+      (function () {
+        "use strict";
+        window.addEventListener(
+          "load",
+          function () {
+            var forms = document.getElementsByClassName("needs-validation");
+            Array.prototype.filter.call(forms, function (form) {
+              form.addEventListener(
+                "submit",
+                function (event) {
+                  if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                  }
+                  form.classList.add("was-validated");
+                },
+                false
+              );
+            });
+          },
+          false
+        );
+      })();
+    </script>
+  </body>
+</html>
